@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3 sticky-top">
+
+    <a routerLink="/" class="navbar-brand">Organic Shopping</a>
+  
+
+  <ul class="navbar-nav">
+    <li routerLinkActive="active" class="nav-item"><a class="nav-link" routerLink="/shopping-cart">Shopping-Cart 
+      <span class="badge badge-warning">0</span></a></li>
+    <ng-template #anonymousUser>
+    <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" routerLink="/login">Login</a>
+    </li>
+  </ng-template>
+
+    <li ngbDropdown class="nav-item" *ngIf="authService.user$ | async as user; else anonymousUser">
+      <a ngbDropdownToggle class=" nav-link">{{user.displayName}}<span class="caret"></span></a>
+        <ul ngbDropdownMenu>
+            <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li> 
+            <li><a class="dropdown-item" (click)="logout()" style="cursor: pointer;" >Logout</a></li>  
+        </ul>
+    </li>
+
+  </ul>
+</nav>

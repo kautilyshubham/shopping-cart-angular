@@ -1,0 +1,37 @@
+
+<div class="row">
+  <div class="col-sm-8 offset-2">
+            <h1>
+              <a   class="btn btn-info" routerLink="/admin/products/new">Add Product</a>
+            </h1>
+         <div class="form-group well">
+           <input type="text" class="form-control" placeholder="search here" [(ngModel)]="search">
+         </div>
+         <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+           <thead>
+              <tr>
+                  <th></th>
+                  <th> <mfDefaultSorter>Name</mfDefaultSorter></th>
+                  <th><mfDefaultSorter>Price</mfDefaultSorter></th>
+                  <th></th>
+                </tr>
+           </thead>
+          <tbody>
+              <tr *ngFor="let p of products$ | async | filter:search  ; let i=index ">
+                  <td><img [src]="p.payload.val().imagePath" alt="" style="height: 30px;width: 50px;"></td>
+                  <td>{{p.payload.val().name}}</td>
+                  <td>{{p.payload.val().price}}</td>
+                  <td><a [routerLink]="['/admin/products/',p.key]">Edit</a></td>
+             </tr> 
+          </tbody>
+          <tfoot>
+            <tr>
+                <td colspan="4">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+         </table>
+  </div>
+</div>
+

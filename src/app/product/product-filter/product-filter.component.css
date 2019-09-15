@@ -1,0 +1,6 @@
+.list-group>a{
+    text-decoration: none;
+}
+.sticky-top{
+    top: 70px;
+}
